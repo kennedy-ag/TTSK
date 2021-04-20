@@ -28,3 +28,9 @@ a#back-to-top {
   font-size: 24pt;
   text-decoration: none;
 }
+div.opcoes{
+  -webkit-transition: all 0.2s ease-in;
+}
+div.opcoes:hover{
+  -webkit-transform: scale(1.1);
+}
