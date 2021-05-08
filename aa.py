@@ -23,6 +23,7 @@ def buscar(request):
 	keywords = requisicao['busca'][0]
 
 	# Credenciais
+
 	consumer_key = "OWPItxGFF5e146jrcbsPMCs83"
 	consumer_secret_key = "ZUxSH8ziCj5pWL4steFrv5ob9CQdmpmHa01AAGDBtxjzDqTHLg"
 	access_token = "882377451720122368-wH3JkhYE78C5Y0L4c7R75qmLRQE4LP6"
@@ -40,14 +41,7 @@ def buscar(request):
 	i = 1
 	for tweet in tweets:
 	  user = tweet._json['user']
-	  text = tweet.text
-	  if "https://t.co/" in text:
-	  	h = tweet.text.find('https://t.co/')
-	  	link = tweet.text[h:h+23]
-	  	text = text.replace(link, '')
-	  else:
-	  	link = '#'
-	  lista_de_dados.append([i, user['screen_name'], user['name'], text, tweet._json['created_at'][0:-10], link])
+	  lista_de_dados.append([i, user['screen_name'], user['name'], tweet._json['text'], tweet._json['created_at'][0:-10]])
 
 	  i += 1
 
@@ -76,7 +70,7 @@ def busca_mensal(request):
 
 	lista_de_dados = []
 	lista_de_textos = []
-	tweets = tweepy.Cursor(token.search_30_day,environment_name='TweetseekThirdDays', query=keywords).items()
+	tweets = tweepy.Cursor(token.search_30_day,environment_name='TweetFromTheOthers', query=keywords).items()
 
 
 	controlador = 0
